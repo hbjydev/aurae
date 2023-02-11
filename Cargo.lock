@@ -24,10 +24,10 @@ version = "0.0.0"
 dependencies = [
  "aer-macros",
  "anyhow",
- "aurae-client",
- "aurae-proto",
  "clap 4.1.4",
+ "client",
  "futures-util",
+ "proto",
  "serde",
  "tokio",
 ]
@@ -128,34 +128,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "aurae-client"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "aurae-client-macros",
- "aurae-proto",
- "serde",
- "thiserror",
- "tokio",
- "toml",
- "tonic",
- "tower",
- "url",
- "x509-certificate",
-]
-
-[[package]]
-name = "aurae-client-macros"
-version = "0.0.0"
-dependencies = [
- "heck",
- "proc-macro2",
- "proto-reader",
- "quote",
- "syn",
-]
-
-[[package]]
 name = "aurae-ebpf-shared"
 version = "0.0.0"
 dependencies = [
@@ -163,23 +135,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "aurae-proto"
-version = "0.0.0"
-dependencies = [
- "pbjson",
- "prost",
- "serde",
- "tonic",
-]
-
-[[package]]
 name = "auraed"
 version = "0.0.0"
 dependencies = [
  "anyhow",
- "aurae-client",
  "aurae-ebpf-shared",
- "aurae-proto",
  "aya",
  "aya-log",
  "backoff",
@@ -187,6 +147,7 @@ dependencies = [
  "cgroups-rs",
  "chrono",
  "clap 4.1.4",
+ "client",
  "clone3",
  "fancy-regex",
  "futures",
@@ -204,6 +165,7 @@ dependencies = [
  "oci-spec 0.5.8",
  "ocipkg",
  "procfs",
+ "proto",
  "rtnetlink",
  "serde",
  "serde_json",
@@ -230,11 +192,11 @@ name = "auraescript"
 version = "0.0.0"
 dependencies = [
  "anyhow",
- "aurae-client",
- "aurae-proto",
  "auraescript_macros",
+ "client",
  "deno_ast",
  "deno_core",
+ "proto",
  "tokio",
 ]
 
@@ -579,6 +541,34 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "783fe232adfca04f90f56201b26d79682d4cd2625e0bc7290b95123afe558ade"
 dependencies = [
  "os_str_bytes",
+]
+
+[[package]]
+name = "client"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "client-macros",
+ "proto",
+ "serde",
+ "thiserror",
+ "tokio",
+ "toml",
+ "tonic",
+ "tower",
+ "url",
+ "x509-certificate",
+]
+
+[[package]]
+name = "client-macros"
+version = "0.0.0"
+dependencies = [
+ "heck",
+ "proc-macro2",
+ "proto-reader",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -2335,6 +2325,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "proto"
+version = "0.0.0"
+dependencies = [
+ "pbjson",
+ "prost",
+ "serde",
+ "tonic",
 ]
 
 [[package]]

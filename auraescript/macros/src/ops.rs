@@ -81,13 +81,13 @@ pub(crate) fn ops_generator(input: TokenStream) -> TokenStream {
                     quote! {
                         #[::deno_core::op]
                         pub(crate) async fn #op_ident(
-                            req: ::aurae_proto::#module::#input_type
+                            req: ::proto::#module::#input_type
                         ) -> std::result::Result<
-                            ::aurae_proto::#module::#output_type,
+                            ::proto::#module::#output_type,
                             ::anyhow::Error
                         > {
-                            let client = ::aurae_client::AuraeClient::default().await?;
-                            let res = ::aurae_client::#module::#service_name_in_snake_case::#client_ident::#name(
+                            let client = ::client::Client::default().await?;
+                            let res = ::client::#module::#service_name_in_snake_case::#client_ident::#name(
                                 &client,
                                 req
                             ).await?;
@@ -226,7 +226,7 @@ fn typescript_service_generator(
 {fn_name}(request: {input_type}): Promise<{output_type}> {{
     // @ts-ignore
     return Deno.core.ops.{op_name}(request);
-}}      
+}}
         "#
         ));
     });

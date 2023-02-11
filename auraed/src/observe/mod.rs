@@ -32,7 +32,7 @@
 #![allow(dead_code)]
 
 use aurae_ebpf_shared::Signal;
-use aurae_proto::observe::{
+use proto::observe::{
     observe_service_server, GetAuraeDaemonLogStreamRequest,
     GetAuraeDaemonLogStreamResponse, GetPosixSignalsStreamRequest,
     GetPosixSignalsStreamResponse, GetSubProcessStreamRequest,

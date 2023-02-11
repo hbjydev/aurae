@@ -130,7 +130,7 @@ clean-certs: ## Clean the cert material
 
 .PHONY: clean-gen
 clean-gens: ## Clean gen directories
-	rm -rf aurae-proto/src/gen/*
+	rm -rf proto/src/gen/*
 	rm -rf auraescript/gen/*
 
 #------------------------------------------------------------------------------#
@@ -138,9 +138,9 @@ clean-gens: ## Clean gen directories
 # Protobuf Commands
 
 GEN_TS_PATTERN = auraescript/gen/v0/%.ts
-GEN_RS_PATTERN = aurae-proto/src/gen/aurae.%.v0.rs
-GEN_SERDE_RS_PATTERN = aurae-proto/src/gen/aurae.%.v0.serde.rs
-GEN_TONIC_RS_PATTERN = aurae-proto/src/gen/aurae.%.v0.tonic.rs
+GEN_RS_PATTERN = proto/src/gen/aurae.%.v0.rs
+GEN_SERDE_RS_PATTERN = proto/src/gen/aurae.%.v0.serde.rs
+GEN_TONIC_RS_PATTERN = proto/src/gen/aurae.%.v0.tonic.rs
 
 PROTOS = $(wildcard api/v0/*/*.proto)
 PROTO_DIRS = $(filter-out api/v0/README.md, $(wildcard api/v0/*))
@@ -262,7 +262,7 @@ endif
 docs-crates: musl $(GEN_TS) $(GEN_RS) ## Build the crate (documentation)
 	$(cargo) doc --target $(uname_m)-unknown-linux-musl --no-deps --package auraed
 	$(cargo) doc --no-deps --package auraescript
-	$(cargo) doc --no-deps --package aurae-client
+	$(cargo) doc --no-deps --package client
 	$(cargo) doc --no-deps --package aer
 	cp -rv target/doc/* docs/crate
 
@@ -364,5 +364,5 @@ headers-write: ## Fix any problematic files blindly.
 check-deps: musl $(GEN_TS) $(GEN_RS) ## Check if there are any unused dependencies in Cargo.toml
 #	cargo +nightly udeps --target $(uname_m)-unknown-linux-musl --package auraed
 #	cargo +nightly udeps --package auraescript
-#	cargo +nightly udeps --package aurae-client
+#	cargo +nightly udeps --package client
 #	cargo +nightly udeps --package aer
